@@ -1,10 +1,11 @@
 <template>
     <div class="home">
-        主页
+        <top-nav></top-nav>
     </div>
 </template>
 
 <script setup>
+import TopNav from '../components/homeview/topNav.vue'
 
 </script>
 

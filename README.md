@@ -10,6 +10,10 @@
 
 # BUG记录
 
+# 导报记录
+- npm i vue-router -S   路由相关
+- npm i less -S         less
+
 # 日志
 
 # 后记

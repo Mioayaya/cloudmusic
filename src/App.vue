@@ -3,11 +3,22 @@
 </template>
 
 <script setup>
-import HomeView from './views/HomeView.vue';
 
 </script>
 
 
-<style>
+<style lang="less">
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eee;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
 
 </style>
