@@ -1,5 +1,5 @@
 <template>
-    <el-scrollbar height="633px">
+    <el-scrollbar height="85vh">
         <el-menu class="el-menu-vertical-demo" default-active="1" @open="handleOpen" @close="handleClose">
             <!-- 发现音乐等 -->
             <el-menu-item class="top" v-for="(item, i) in listItem.top" :key="item.id" :index="item.id + ''">
@@ -88,11 +88,16 @@ const addlist = () => {
     background-color: #2b2b2b;
     width: 200px;
     padding: 0;
-}
+}   
 
+// 更改右边边框的颜色
+:deep(.el-menu) {
+    --el-menu-border-color: #2b2b2b;
+    border-right: solid 1px #373737 !important;
+}
 .el-menu-vertical-demo {
     background-color: #2b2b2b;
-    color: #fff;
+    color: #fff;    
 
     // 共享
     .el-menu-item {

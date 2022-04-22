@@ -93,7 +93,7 @@ const userdata = reactive({
 <style lang="less" scoped>
 .topnav {
     width: 100%;
-    height: 65px;
+    height: 8vh;
     background-color: black;
     display: flex;
     position: relative;
