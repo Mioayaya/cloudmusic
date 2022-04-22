@@ -21,6 +21,7 @@
 - npm i vue-router -S   路由相关
 - npm i less -S         less
 - npm i element-plus -S 饿了么ui
+- npm i axios -S        axios
 
 # 日志
 - 2022/04/17
@@ -28,4 +29,9 @@
 - 2022/04/21
   - 顶部导航栏的ui实现
   - 侧边导航栏以及点击效果
+- 2022/04/22
+  - 推荐页面的简单实现
+  - 分页选择
+  - 轮播图实现
+  - 推荐歌单
 # 后记
