@@ -17,11 +17,15 @@
 
 # BUG记录
 
+Q: 使用全局变量报错 Cannot read properties of undefined (reading ‘dispatch‘)  
+A: stroe文件没有在main.js中导入
+
 # 导报记录
 - npm i vue-router -S   路由相关
 - npm i less -S         less
 - npm i element-plus -S 饿了么ui
 - npm i axios -S        axios
+- npm i vuex -S         全局变量相关
 
 # 日志
 - 2022/04/17
@@ -34,4 +38,8 @@
   - 分页选择
   - 轮播图实现
   - 推荐歌单
+- 2022/04/23
+  - 实现歌单的跳转以及顶部的布局
+  - 左侧列表切换页面的，也能保存active
+  - 部分逻辑优化 
 # 后记

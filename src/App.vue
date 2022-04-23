@@ -22,4 +22,12 @@ body {
     position: absolute;
 }
 
+a {
+    color:#fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+}
 </style>
