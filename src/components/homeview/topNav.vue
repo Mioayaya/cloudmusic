@@ -2,10 +2,10 @@
     <div class="topnav">
         <!-- 左上角的图片 -->
         <div class="left">
-            <svg class="icon" aria-hidden="true">
+            <svg class="icon" aria-hidden="true" @click="gohome">
                 <use xlink:href="#icon-wangyiyun"></use>
             </svg>
-            <span class="text">网易云音乐</span>
+            <span class="text" @click="gohome">网易云音乐</span>
             <!-- 搜索框 -->
             <div class="middle">
                 <!-- 搜索栏 -->
@@ -83,11 +83,19 @@
 
 <script setup>
 import { reactive } from "@vue/reactivity";
-
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+const router = useRouter();
 const userdata = reactive({
     avatar: '',
     name: '未登录',
 })
+
+const store = useStore();
+const gohome = () => {
+    store.dispatch('listActive','1');
+    router.push({path:'/'});
+}
 </script>
 
 <style lang="less" scoped>
@@ -113,10 +121,15 @@ const userdata = reactive({
             height: 25px;
             margin-right: 10px;
         }
-
+        .icon:hover{
+            cursor:pointer;
+        }
         .text {
             font-size: 18px;
             line-height: 30px;
+        }
+        .text:hover {
+            cursor:pointer;
         }
     }
 

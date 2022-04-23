@@ -1,8 +1,9 @@
 <template>
     <el-scrollbar height="85vh">
-        <el-menu class="el-menu-vertical-demo" default-active="1" @open="handleOpen" @close="handleClose">
+        <!-- default-active一开始的默认点击 -->
+        <el-menu class="el-menu-vertical-demo" :default-active="nowActive" @open="handleOpen" @close="handleClose">
             <!-- 发现音乐等 -->
-            <el-menu-item class="top" v-for="(item, i) in listItem.top" :key="item.id" :index="item.id + ''">
+            <el-menu-item class="top" v-for="(item, i) in listItem.top" :key="item.id" :index="item.id + ''" @click="gotoView(item.path,item.active)">
                 <span>{{ item.name }}</span>
             </el-menu-item>
             <!-- 分割提示 '我的音乐' -->
@@ -10,7 +11,7 @@
                 <span>我的音乐</span>
             </el-menu-item>
             <!-- 我的音乐内容 -->
-            <el-menu-item class="content" v-for="(item, i) in listItem.person" :key="item.id" :index="item.id + ''">
+            <el-menu-item class="content" v-for="(item, i) in listItem.person" :key="item.id" :index="item.id + ''" @click="gotoView(item.path,item.active)">
                 <span>{{ item.name }}</span>
             </el-menu-item>
 
@@ -19,7 +20,7 @@
                     <span>创建的歌单</span>
                     <span class="add-more" @click="addlist">+</span>
                 </template>
-                <el-menu-item class="create" v-for="(item,i) in userdata.createList" :key="item.id" :index="item.id+''">
+                <el-menu-item class="create" v-for="(item,i) in userdata.createList" :key="item.id" :index="item.id+''" @click="gotoView(item.path,item.active)">
                     <span>{{item.name}}</span>
                 </el-menu-item>
             </el-sub-menu>
@@ -42,23 +43,26 @@ import {
     Location,
     Setting,
 } from '@element-plus/icons-vue'
-import { reactive } from '@vue/reactivity'
+import { reactive, ref } from '@vue/reactivity'
+import { inject } from '@vue/runtime-core'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
 
 const listItem = reactive({
     top: [
-        { id: 1, name: '发现音乐', path: '/home' },
-        { id: 2, name: '播客', path: '/home' },
-        { id: 3, name: '视频', path: '/home' },
-        { id: 4, name: '关注', path: '/home' },
-        { id: 5, name: '直播', path: '/home' },
-        { id: 6, name: '私人FM', path: '/home' },
+        { id: 1, name: '发现音乐', path: '/home',active:'1', },
+        { id: 2, name: '播客', path: '/test',active:'2' },
+        { id: 3, name: '视频', path: '/home',active:'3' },
+        { id: 4, name: '关注', path: '/home',active:'4' },
+        { id: 5, name: '直播', path: '/home',active:'5' },
+        { id: 6, name: '私人FM', path: '/home',active:'6' },
     ],
     person: [
-        { id: 7, name: '本地与下载', path: '/home', icon: '' },
-        { id: 8, name: '最近播放', path: '/home', icon: '' },
-        { id: 9, name: '我的音乐云盘', path: '/home', icon: '' },
-        { id: 10, name: '我的播客', path: '/home', icon: '' },
-        { id: 11, name: '我的收藏', path: '/home', icon: '' },
+        { id: 7, name: '本地与下载', path: '/home', icon: '',active:'7' },
+        { id: 8, name: '最近播放', path: '/home', icon: '',active:'8' },
+        { id: 9, name: '我的音乐云盘', path: '/home', icon: '',active:'9' },
+        { id: 10, name: '我的播客', path: '/home', icon: '',active:'10' },
+        { id: 11, name: '我的收藏', path: '/home', icon: '',active:'11' },
     ]
 })
 
@@ -66,12 +70,22 @@ const userdata = reactive({
     id: '',
     name: '',
     createList: [
-        { id: 12, name: '我喜欢的音乐', path: '/home', icon: '' },
+        // active的数值无关，也就是可以任何数值，后续使用歌单id即可(转为字符串)
+        { id: 12, name: '我喜欢的音乐', path: '/home', icon: '',active:'12' },
     ],
     likeList: [
 
     ],
 })
+const router = useRouter();
+const store = useStore();
+const nowActive = ref('');
+nowActive.value = store.state.listActive;
+// console.log(`nowactive=${store.state.listActive}`);
+const gotoView = (ipath,active) => {
+    store.dispatch('listActive',active);
+    router.push({path:ipath});
+}
 
 const addlist = () => {
     if(!userdata.id) {
