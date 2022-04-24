@@ -17,3 +17,8 @@ export function getRecommendList(num) {
 export function getPlaylistDetail(id) {
     return axios.get(`${baseURL}/playlist/detail?id=${id}`);
 }
+
+// 获取歌单所有歌曲
+export function getPlaylistAll(id) {
+    return axios.get(`${baseURL}/playlist/track/all?id=${id}`);
+}
