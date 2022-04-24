@@ -41,10 +41,24 @@
                 </div>
             </div>
             <div class="right-4">
-                <!-- 歌曲、播放 -->
+                <!-- 标签 -->
+                <span>{{'标签 :'}}</span>
+                <span class="tags" v-for="(item,i) in listdata.musiclistData.playlist.tags" :key="i">
+                    <span class="tag">{{item}}</span>
+                    <span v-if="i!=listdata.musiclistData.playlist.tags.length-1">{{' /'}}</span>
+                </span>
             </div>
             <div class="right-5">
+                <!-- 歌曲、播放 -->
+                <span>{{'歌曲 :'}}</span>
+                <span class="song-num num">{{listdata.musiclistData.playlist.trackCount}}</span>
+                <span>{{'播放 :'}}</span>
+                <span class="play-num num">{{changeCount(listdata.musiclistData.playlist.playCount)}}</span>
+            </div>
+            <div class="right-6">
                 <!-- 简介 -->
+                <span class="des">{{'简介 :'}}</span>
+                <span class="description">{{listdata.musiclistData.playlist.description}}</span>
             </div>
         </div>
     </div>
@@ -54,7 +68,6 @@
 import { inject, onMounted, reactive } from "@vue/runtime-core";
 
 const listdata = inject('listdata');
-
 const getTime = (ms) => {
     let odate = new Date(ms);
     let oYear = odate.getFullYear();
@@ -171,6 +184,57 @@ const changeCount = (num) => {
                 cursor:pointer;
             }
         }
+        .right-4 {
+            margin-top: 10px;
+            .tags {
+                margin-left: 5px;
+                .tag {
+                    color: #85b9e6;
+                }
+                .tag:hover {
+                    color:#b3cee5;
+                    cursor:pointer;
+                }
+            }
+            span {
+                font-size: 13px;
+            }
+        }
+        .right-5 {
+            margin-top: 10px;
+            .num {
+                margin: 0 5px;
+                color: #7e7e7e;
+            }
+            .song-num {
+                margin-right: 15px;
+            }
+            span {
+                font-size: 13px;
+            }
+        }
+        .right-6 {
+            display: flex;
+            margin-top: 10px;
+            .des {
+                height: 20px;
+            }
+            .description {
+                width: 45vw;
+                height: 60px;
+                margin-left: 5px;
+                color: #7e7e7e;
+                overflow: hidden;
+                display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+            }
+            span {
+                font-size: 13px;
+                line-height: 20px;
+            }
+        }
+
     }
 
 }
