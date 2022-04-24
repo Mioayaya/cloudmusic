@@ -22,7 +22,7 @@ const swiperPic = reactive({
 
 onMounted(async() => {
     let result = await getBanner(0);
-    console.log(result);
+    // console.log(result);
     swiperPic.pic = result.data.banners;
 })
 </script>

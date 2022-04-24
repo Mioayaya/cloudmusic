@@ -1,7 +1,8 @@
 <template>
     <div class="musiclist-body">
-        <el-scrollbar height="74.7vh">
+        <el-scrollbar height="84.7vh">
             <MusicTop/>
+            <PlayNav/>
         </el-scrollbar>
         
     </div>
@@ -9,14 +10,19 @@
 
 <script setup>import { useRoute } from 'vue-router';
 import { onMounted, provide, reactive } from '@vue/runtime-core';
-import { getPlaylistDetail } from '../../api';
+import { getPlaylistAll, getPlaylistDetail } from '../../api';
 import MusicTop from './musicbody/musicTop.vue';
+import Playlist from './musicbody/playlist.vue';
+import PlayNav from './musicbody/playNav.vue';
 const route = useRoute();
 // 歌单信息
 const musiclistData = reactive({
     list:[],
     playlist:{
         creator:{}
+    },
+    playlistAll:{
+
     }
 })
 
@@ -28,6 +34,9 @@ onMounted(async() => {
     let res = await getPlaylistDetail(route.query.id);
     // console.log(res);
     musiclistData.playlist = res.data.playlist;
+    res = await getPlaylistAll(route.query.id);
+    // console.log(res);
+    musiclistData.playlistAll = res.data;
 })
 
 </script>

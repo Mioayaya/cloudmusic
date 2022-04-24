@@ -19,7 +19,7 @@ import PerRecomdCont from './perRecomdCont.vue';
 const activeName = ref('first')
 
 const handleClick = (tab, event) => {
-  console.log(tab, event)
+//   console.log(tab, event)
 }
 </script>
 

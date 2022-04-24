@@ -47,7 +47,7 @@ const changeCount = (num) => {
 
 onMounted(async () => {
     let res = await getRecommendList(10);
-    console.log(res);
+    // console.log(res);
     recommendlist.list = res.data.result;
 })
 </script>
