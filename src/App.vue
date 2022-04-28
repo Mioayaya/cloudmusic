@@ -1,8 +1,13 @@
 <template>
-    <router-view />
+    <div>
+        <router-view/>
+        <play-bottom></play-bottom>
+    </div>
 </template>
 
 <script setup>
+import PlayBottom from './components/palyController/playBottom.vue';
+
 
 </script>
 
