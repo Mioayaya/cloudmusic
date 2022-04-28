@@ -1,5 +1,5 @@
 <template>
-    <div class="musictop">
+    <div class="musictop" v-if="listdata.musiclistData.playlist.id">
         <div class="left">
             <!-- 左边是一个歌单图片 -->
             <img :src="listdata.musiclistData.playlist.coverImgUrl" alt="">
@@ -60,6 +60,16 @@
                 <span class="des">{{'简介 :'}}</span>
                 <span class="description">{{listdata.musiclistData.playlist.description}}</span>
             </div>
+        </div>
+    </div>
+    <div class="musictop-nav" v-else>
+        <div class="left"></div>
+        <div class="right">
+            <div class="right-1"></div>
+            <div class="right-n"></div>
+            <div class="right-n"></div>
+            <div class="right-2"></div>
+            <div class="right-2"></div>
         </div>
     </div>
 </template>
@@ -237,5 +247,40 @@ const changeCount = (num) => {
 
     }
 
+}
+
+.musictop-nav {
+    padding-top: 20px;
+    padding-right: 20px;
+    display: flex;
+    .left {
+        width: 232px;
+        height: 232px;
+        background-color: #a1a2a4;
+        border-radius: 5px;
+    }
+    .right {
+        padding-left: 20px;
+        .right-1 {
+            width: 500px;
+            height: 35px;
+            background-color: #f0f2f5c0;
+            border-radius: 20px;
+        }
+        .right-n {
+            margin-top: 25px;
+            width: 500px;
+            height: 18px;
+            background-color: #f0f2f5c0;
+            border-radius: 20px;
+        }
+        .right-2 {
+            margin-top: 25px;
+            width: 750px;
+            height: 18px;
+            background-color: #f0f2f5c0;
+            border-radius: 20px;
+        }
+    }
 }
 </style>

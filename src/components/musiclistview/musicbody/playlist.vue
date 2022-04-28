@@ -15,7 +15,8 @@
             </thead>
             <tbody>
                 <tr class="tr" v-for="(item,i) in listdata.musiclistData.playlistAll.songs" :key="item.id" 
-                :style="{backgroundColor:(i%2?'#2b2b2b':'#2e2e2e')}" :class="{active:(isActive===item.id)}" @click="changeClass(item.id)">
+                :style="{backgroundColor:(i%2?'#2b2b2b':'#2e2e2e')}" :class="{active:(isActive===item.id)}" 
+                @click="changeClass(item.id)" v-on:dblclick="setPaly(listdata.musiclistData.playlistAll.songs,item,i)">
                     <th scope="row" class="row-1 td">
                         <span>{{(i+1)>9?i+1:'0'+(i+1)}}</span>
                         <div class="iconlist">
@@ -49,6 +50,7 @@
                     <!-- 时间 -->
                     <td class="time td">{{getSongTime(item.dt)}}</td>
                 </tr>
+
             </tbody>
         </table>
 
@@ -57,6 +59,8 @@
 
 <script setup>
 import { inject, ref } from "@vue/runtime-core";
+import { useStore } from "vuex";
+const store = useStore();
 const listdata = inject('listdata');
 const isActive = ref('');
 
@@ -64,6 +68,16 @@ const changeClass = (active) => {
     isActive.value = active;
 }
 
+//  双击进入播放?同时进入播放列表
+const setPaly = (list,item,id) => {
+    // console.log(id);
+    store.dispatch('setPlayId',id);
+    store.dispatch('setPlayIndex',item);
+    store.dispatch('setPlaylist',list);
+    // console.log(store.state.playCurrentIndex);
+    // console.log(store.state.playlist);
+    // console.log(store.state.playId);
+}
 const getSongTime = (dt) => {
     let oSeconds = dt/1000;
     let oMinutes =Math.trunc(oSeconds/60);

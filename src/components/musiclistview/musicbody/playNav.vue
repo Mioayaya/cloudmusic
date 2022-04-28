@@ -5,7 +5,7 @@
             <el-tab-pane label="歌曲列表"   name="first">
                 <Playlist/> 
             </el-tab-pane>
-            <el-tab-pane :label="`评论(${listdata.musiclistData.playlist.commentCount})`" name="second">评论列表</el-tab-pane>
+            <el-tab-pane :label="`评论(${listdata.musiclistData.playlist.commentCount||'···'})`" name="second">评论列表</el-tab-pane>
             <el-tab-pane label="收藏者" name="third">收藏者</el-tab-pane>
         </el-tabs>
     </div>

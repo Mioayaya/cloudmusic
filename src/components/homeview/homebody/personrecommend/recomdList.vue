@@ -5,18 +5,26 @@
             <!-- 推荐歌单 -->
             <span>{{ '推荐歌单 >' }}</span>
         </div>
-        <div class="content">
+        <div class="content" v-if="recommendlist.index">
             <!-- 歌单列表、选取10个 -->
-            <router-link :to="{path:'/musiclist',query:{id:item.id}}" class="song-list" v-for="(item,i) in recommendlist.list" :key="item.id" :style="{marginRight:((i===4||i===9)?0:'')}">
+            <router-link :to="{ path: '/musiclist', query: { id: item.id } }" class="song-list"
+                v-for="(item, i) in recommendlist.list" :key="item.id" :style="{ marginRight: ((i === 4 || i === 9) ? 0 : '') }">
                 <img :src="item.picUrl" alt="">
-                <span class="name">{{item.name}}</span>
+                <span class="name">{{ item.name }}</span>
                 <div class="playCount">
-                    {{ "▷ "+ changeCount(item.playCount) }}
+                    {{ "▷ " + changeCount(item.playCount) }}
                 </div>
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-bofang"></use>
                 </svg>
             </router-link>
+        </div>
+        <div class="content" v-else>
+            <div class="song-list-nan"
+                v-for="(item, i) in 10" :key="i" :style="{ marginRight: ((i === 4 || i === 9) ? 0 : '') }">
+                <div class="img"></div>
+                <span class="name"></span>
+            </div>
         </div>
     </div>
 
@@ -31,15 +39,16 @@ const recommendlist = reactive({
     list: [
         {}
     ],
+    index: false,
 })
 
 const changeCount = (num) => {
     let res = num;
-    if(num>100000000){
-        res = num/100000000;
+    if (num > 100000000) {
+        res = num / 100000000;
         res = res.toFixed(2) + '亿';
-    }else if(num>10000){
-        res = num/10000;
+    } else if (num > 10000) {
+        res = num / 10000;
         res = res.toFixed(2) + '万';
     }
     return res;
@@ -49,6 +58,7 @@ onMounted(async () => {
     let res = await getRecommendList(10);
     // console.log(res);
     recommendlist.list = res.data.result;
+    recommendlist.index = true;
 })
 </script>
 
@@ -60,12 +70,14 @@ onMounted(async () => {
             font-weight: 500;
         }
     }
+
     .content {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         position: relative;
         padding-top: 10px;
+
         .song-list {
             display: flex;
             justify-content: last baseline;
@@ -75,28 +87,32 @@ onMounted(async () => {
             height: 245px;
             border-radius: 5px;
             position: relative;
+
             img {
                 width: 100%;
                 height: auto;
                 border-radius: 5px;
             }
+
             .name {
                 font-size: 15px;
                 height: 45px;
                 overflow: hidden;
                 display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
             }
+
             .playCount {
-				color: white;
-				position:absolute;
-				right: 0.07rem;
-				top: 0.07rem;
-				font-size: 0.2rem;
-				text-align: center;
-				padding: 0 5px;
+                color: white;
+                position: absolute;
+                right: 0.07rem;
+                top: 0.07rem;
+                font-size: 0.2rem;
+                text-align: center;
+                padding: 0 5px;
             }
+
             .icon {
                 width: 30px;
                 height: 30px;
@@ -108,6 +124,7 @@ onMounted(async () => {
                 display: none;
             }
         }
+
         .song-list:hover {
             .icon {
                 width: 30px;
@@ -120,8 +137,32 @@ onMounted(async () => {
                 display: block;
             }
         }
-        
+
+        .song-list-nan {
+            display: flex;
+            justify-content: last baseline;
+            flex-direction: column;
+            margin-right: 54px;
+            width: 180px;
+            height: 245px;
+            border-radius: 5px;
+            position: relative;
+
+            .img {
+                width: 180px;
+                height: 180px;
+                border-radius: 5px;
+                background: #dcdfe6;
+            }
+
+            .name {
+                margin-top: 5px;
+                width: auto;
+                height: 20px;
+                background-color: #f0f2f599;
+                border-radius: 5px;
+            }
+        }
     }
 }
-
 </style>
