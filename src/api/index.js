@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:3000';
+// const baseURL = 'http://localhost:3000';
+const baseURL = 'https://cloud-music-ten-iota.vercel.app';
 
 // 获取轮播图的api  type:资源类型,对应以下类型,默认为 2 即 iphone
 // 0: pc 1: android 2: iphone 3: ipad
