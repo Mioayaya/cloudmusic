@@ -27,6 +27,7 @@ A: stroe文件没有在main.js中导入
 - npm i element-plus -S 饿了么ui
 - npm i axios -S        axios
 - npm i vuex -S         全局变量相关
+- npm install aplayer -S vue3 playAPI
 
 # 日志
 - 2022/04/17
@@ -46,4 +47,8 @@ A: stroe文件没有在main.js中导入
 - 2022/04/24
   - 歌单详情
   - 歌曲列表的实现
+- 2022/04/28
+  - 增加了响应时候的骨架屏
+  - 新增全局播放功能
+    - 可以播放\暂停,上一首 下一首切换
 # 后记
