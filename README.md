@@ -20,35 +20,3 @@
 
 Q: 使用全局变量报错 Cannot read properties of undefined (reading ‘dispatch‘)  
 A: stroe文件没有在main.js中导入
-
-# 导报记录
-- npm i vue-router -S   路由相关
-- npm i less -S         less
-- npm i element-plus -S 饿了么ui
-- npm i axios -S        axios
-- npm i vuex -S         全局变量相关
-- npm install aplayer -S vue3 playAPI
-
-# 日志
-- 2022/04/17
-  - 顶部标题栏中logo的实现
-- 2022/04/21
-  - 顶部导航栏的ui实现
-  - 侧边导航栏以及点击效果
-- 2022/04/22
-  - 推荐页面的简单实现
-  - 分页选择
-  - 轮播图实现
-  - 推荐歌单
-- 2022/04/23
-  - 实现歌单的跳转以及顶部的布局
-  - 左侧列表切换页面的，也能保存active
-  - 部分逻辑优化 
-- 2022/04/24
-  - 歌单详情
-  - 歌曲列表的实现
-- 2022/04/28
-  - 增加了响应时候的骨架屏
-  - 新增全局播放功能
-    - 可以播放\暂停,上一首 下一首切换
-# 后记
