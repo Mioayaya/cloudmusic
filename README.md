@@ -1,4 +1,4 @@
-# Vue3.2 仿网易云web端
+# Vue3 仿网易云pc端
 
 # 技术栈
 - html/js/css/less
